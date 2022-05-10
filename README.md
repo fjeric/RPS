@@ -1,5 +1,5 @@
 # RPS
-The Odin Project. Rock-paper-scissors with browser console
+The Odin Project. Rock-paper-scissors with UI
 
-Current version: start game game() in console. 
-Plays 5 rounds
+Current version: Game plays until player or computer has 5 round wins
+Total rounds are also tracked
