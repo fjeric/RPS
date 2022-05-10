@@ -1,5 +1,6 @@
 var playerScore = 0;
 var compScore = 0;
+var round = 0;
 var roundWinner = '';
 
 function computerPlay() {
@@ -16,12 +17,9 @@ function computerPlay() {
     }
 }
 
-function playerSelection() {
-    var choice = prompt('Enter player choice');
-    return choice.toLowerCase();
-}
 
 function playRound(playerChoice, compChoice) {
+    round++;
     if (
     (playerChoice == 'rock' && compChoice == 'scissor') ||
     (playerChoice == 'paper' && compChoice == 'rock') ||
@@ -44,16 +42,22 @@ function playRound(playerChoice, compChoice) {
        roundWinner = 'tie';
 }
 
+
 function playerClick(playerChoice) {
+
     const compChoice = computerPlay();
     playRound(playerChoice, compChoice);
     roundWin();
     choices(playerChoice, compChoice);
     updateScore();
+
+    if (isGameOver() === true) {
+        gameOverMessages(); 
+    }
 }
 
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.choices');
 const container = document.querySelector('#container');
 
 buttons.forEach((button) => {
@@ -62,10 +66,12 @@ buttons.forEach((button) => {
     });
 });
 
+const roundCount = document.getElementById('round');
 const playerScoreCount = document.getElementById('playerScore');
 const compScoreCount = document.getElementById('compScore');
 const scoreMessage = document.getElementById('message');
-const choiceMessage = document.getElementById('choiceInfo')
+const choiceMessage = document.getElementById('choiceInfo');
+const restartButton = document.getElementById('restartGame');
 
 function roundWin() {
     if (roundWinner === 'tie') {
@@ -92,10 +98,43 @@ function choices(playerChoice, compChoice) {
 }
 
 function updateScore() {
+    roundCount.textContent = `Round: ${round}`
     playerScoreCount.textContent = `Player: ${playerScore}`
     compScoreCount.textContent = `Computer: ${compScore}`
 }
 
 function capitalizeChoice(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+function isGameOver() {
+    if (playerScore === 5 || compScore === 5) {
+        document.getElementById("scissor").disabled = true;
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        return true; }
+    return false; 
+}
+
+
+function gameOverMessages() {
+    if (playerScore === 5) {
+        scoreMessage.textContent = "You won 5 rounds first. You win!!";
+        choiceMessage.textContent = "Congratulations!";
+        restartButton.style.visibility='visible';
+        resetGame();
+    }
+
+    if (compScore === 5) {
+        scoreMessage.textContent = "The computer won 5 rounds first. You lose :(";
+        choiceMessage.textContent = "Better luck next time";
+        restartButton.style.visibility='visible';
+        resetGame();
+    }
+}
+
+function resetGame() {
+    restartButton.addEventListener('click', () => {
+        window.location.reload();
+    });
 }

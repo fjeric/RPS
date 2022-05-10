@@ -1,0 +1,35 @@
+/* initially hides restart button */
+#restartGame {
+    visibility: hidden;
+}
+
+body {
+    background-color: #041C32;
+    color: white;
+    text-align: center;
+}
+
+.scores {
+    display: flex;
+    gap: 35px;
+    font-size: 20px;
+}
+
+button{
+    padding: 15px 25px;
+    font-size: 15px;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+#hold {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    padding-top: 150px;
+}
+
+h2 {
+    font-size: 30px;
+}

@@ -5,21 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS</title>
+    <link rel="stylesheet" href="style.css"/>
     <script src="scripts.js" defer></script>
 </head>
 <body>
     <div id="container">
-        <h2 class="score-info" id="message">Choose</h2>
+        <div id="hold">
+        <div class="headingContainers">
+        <h2 class="score-info" id="message">ROCK PAPER SCISSORS</h2>
         <h2 id="choiceInfo">First to score five points wins</div>
-        <div id="buttonsDiv">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissor">Scissor</button>
+        <div class="gameChoices">
+            <button class="choices" id="rock">Rock</button>
+            <button class="choices" id="paper">Paper</button>
+            <button class="choices" id="scissor">Scissor</button>
         </div>
         <div class="scores">
-            <p class="score" id="playerScore">Player : 0</p>
+            <p id="round">Round: 0</p>
+            <p class="score" id="playerScore">Player: 0</p>
             <p class="score" id="compScore">Computer: 0</p>
         </div>
+
+        <div class="restart">
+            <button id="restartGame">Restart Game</button>
+        </div>
+    </div>
     </div>
 </body>
 </html>
